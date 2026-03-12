@@ -30,6 +30,7 @@ Entitățile proiectului:
 -Logic: În momentul în care se instanțiază un contract, starea mașinii (EsteDisponibila) se schimbă automat în false.
 
 🚀 Aplicația de Test (Program.cs)
+
 În metoda Main, am implementat un scenariu complet de testare care execută următorii pași:
 
 1. Afișează angajatul care a accesat sistemul.
