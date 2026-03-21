@@ -37,3 +37,50 @@ Entitățile proiectului:
 2. Creează o mașină nouă și îi verifică starea inițială (Disponibilă).
 3. Definește un client și înregistrează un contract de închiriere pe o perioadă de 7 zile.
 4. Verifică actualizarea automată a stării mașinii (devine "Închiriată" după semnarea contractului).
+
+
+
+🛠️ Evoluție și Restructurare: Gestiunea Colecțiilor (Laboratorul 3 & 4) (Etapa 2 & 3)
+În această etapă, proiectul a evoluat de la o aplicație simplă de consolă la o soluție software modulară, integrând gestiunea dinamică a datelor și tehnologii avansate de interogare (LINQ). Implementarea acoperă simultan cerințele Laboratoarelor 3 și 4.
+
+1. Arhitectura pe 3 Niveluri (Separation of Concerns)
+Pentru o mentenanță ușoară și un cod curat, aplicația este acum divizată în 3 proiecte distincte:
+
+ModeleAuto (Librărie de clase): Conține entitățile de business (Masina, Client, Angajat, ContractInchiriere) și definirea enumerărilor.
+
+NivelStocareDate (Librărie de clase): Gestionează colecțiile de obiecte. Am implementat clasa AdministrareMasiniMemorie, care utilizează o colecție generică de tip List<Masina> pentru a înlocui vectorii statici, permițând o stocare dinamică în memoria RAM.
+
+ProiectInchirieriAuto (Proiect Consolă): Gestionează exclusiv interfața cu utilizatorul (Program.cs) și rutează comenzile.
+
+2. Tipuri Avansate de Date și Validări (Lab 4)
+Sistem de Enumerări:
+
+CuloareMasina: Enumerare simplă pentru definirea culorii mașinii (Roșu, Alb, Negru).
+
+OptiuniMasina: Enumerare implementată cu atributul [Flags]. Aceasta permite selecția multiplă de dotări (ex: AerConditionat | Navigatie) utilizând operatori pe biți.
+
+Tratarea Excepțiilor și Validare: Citirea datelor numerice de la tastatură (ex: Anul fabricației, Opțiunile) este securizată folosind metoda int.TryParse, prevenind închiderea accidentală a aplicației la introducerea unor caractere invalide.
+
+3. Gestiunea Datelor și Tehnologia LINQ (Lab 3 & 4)
+Logica aplicației permite acum realizarea operațiilor fundamentale asupra listei de mașini:
+
+Citirea și Salvarea: Adăugarea de noi obiecte de tip Masina de la tastatură și stocarea lor în colecția dinamică List<Masina>.
+
+Afișarea: Parcurgerea "vectorului" de obiecte și listarea formatată a flotei.
+
+Căutarea și Filtrarea (Integrare LINQ): Am înlocuit căutările clasice iterative cu LINQ (Language Integrated Query).
+
+Metoda CautaMasiniDupaMarca utilizează funcția de extensie .Where() pentru a găsi rapid mașinile.
+
+Funcția .FindAll() este utilizată pentru a extrage doar mașinile cu statusul EsteDisponibila = true.
+
+4. Logica Interactivă (Meniul Principal)
+Aplicația dispune de un meniu interactiv (tip consolă) care modelează fluxul real dintr-un birou de închirieri:
+
+L (Listare Flotă): Vizualizarea tuturor mașinilor înregistrate.
+
+D (Masini Disponibile): Afișarea exclusivă a vehiculelor care pot fi închiriate.
+
+I (Închiriere): Proces complet prin care se introduce un client nou (Nume, Prenume, CNP), se generează un ContractInchiriere și se schimbă automat statusul mașinii în "indisponibil".
+
+C (Citire): Introducerea unei mașini noi în flotă, cu specificarea culorii și a dotărilor multiple.
