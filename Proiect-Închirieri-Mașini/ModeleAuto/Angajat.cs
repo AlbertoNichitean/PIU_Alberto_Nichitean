@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProiectInchirieriAuto
+namespace ModeleAuto
 {
     public class Angajat
     {
